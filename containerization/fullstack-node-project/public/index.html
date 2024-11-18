@@ -1,0 +1,45 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full-stack Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    .message {
+      font-size: 24px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Full-Stack App!</h1>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    // Fetch data from the backend API
+    fetch('http://localhost:5000/api/message')
+      .then(response => response.json())
+      .then(data => {
+        // Display the message in the frontend
+        document.getElementById('message').textContent = data.message;
+      })
+      .catch(error => {
+        console.error('Error fetching message:', error);
+      });
+  </script>
+</body>
+</html>
+
