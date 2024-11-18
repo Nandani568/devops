@@ -1,26 +1,25 @@
-apiVersion: app/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: fullstack-node-project
 spec:
   replicas: 1
   selector:
-    matchlabels:
+    matchLabels:
       app: fullstack-node-project
   template:
-    metadat:
+    metadata:
       labels:
         app: fullstack-node-project
     spec:
       containers:
         - name: fullstack-node-project
-          image: fullstack-node-project:latest
+          image: nandanisah/fullstack-node-project  # Ensure this matches the built image tag
           ports:
             - containerPort: 5000
           env:
             - name: NODE_ENV
               value: "production"
-
 
 ---
 apiVersion: v1
@@ -28,7 +27,7 @@ kind: Service
 metadata:
   name: fullstack-node-project
 spec:
-  type: NodePort
+  type: NodePort  # This exposes the service internally in the cluster
   selector:
     app: fullstack-node-project
   ports:
